@@ -63,36 +63,32 @@ app.get(
     "/elevators/:elevatorId/requests",
     async (req: Request, res: Response): Promise<Response> => {
         let floorsToVisit = getFloorsToVisitByElevatorID(req.params.elevatorId);
-        return res.status(200).send(floorsToVisit);
+        return res.status(200).send({floorsToVisit});
     }
 );
 
+
 /**
- * Get next request assigned to an elevator by providing it's elevatorId. Returns a numberic floorId.
+ * Get next request assigned to an elevator by providing it's elevatorId.
  */
 app.get(
     "/elevators/:elevatorId/nextRequest",
     async (req: Request, res: Response): Promise<Response> => {
-        let nextFloor = getNextFloorToVisit(req.params.elevatorId);
-        return res.status(200).send(nextFloor);
+        let nextFloor = getFloorsToVisitByElevatorID(req.params.elevatorId)[0];
+        return res.status(200).send({nextFloor});
     }
 );
 
+let requests = [
+    {"requestId": 1, "requestedFloor": 5, "elevatorId": "abc"},
+    {"requestId": 2, "requestedFloor": 2, "elevatorId": undefined},
+    {"requestId": 3, "requestedFloor": 4, "elevatorId": "def"},
+    {"requestId": 4, "requestedFloor": 6, "elevatorId": "abc"},
+    {"requestId": 5, "requestedFloor": 3, "elevatorId": undefined},
+];
 
 function getFloorsToVisitByElevatorID(elevatorId: string): number[]{
-    let requests = [
-        {"requestId": 1, "requestedFloor": 5, "elevatorId": "abc"},
-        {"requestId": 2, "requestedFloor": 2, "elevatorId": undefined},
-        {"requestId": 3, "requestedFloor": 4, "elevatorId": "def"},
-        {"requestId": 4, "requestedFloor": 6, "elevatorId": "abc"},
-        {"requestId": 5, "requestedFloor": 3, "elevatorId": undefined},
-    ];
     let results: IRequest[] = requests.filter(request => request.elevatorId === elevatorId);
     let floorsToVisit: Set<number> = new Set(results.map(a => a.requestedFloor));
     return [... floorsToVisit]
-};
-
-function getNextFloorToVisit(elevatorId: string): number{
-    // These will be very very slow elevators
-    return getFloorsToVisitByElevatorID(elevatorId)[0];
 }
