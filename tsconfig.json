@@ -26,6 +26,7 @@
     /* Completeness */
 //    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
 
+    "allowSyntheticDefaultImports": true
   },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules", "src/**/*.test.ts"]
