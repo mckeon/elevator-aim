@@ -1,0 +1,19 @@
+{
+  "name": "elevator-aim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npm run unit-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mckeon/elevator-aim.git"
+  },
+  "author": "brendon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mckeon/elevator-aim/issues"
+  },
+  "homepage": "https://github.com/mckeon/elevator-aim#readme"
+}
