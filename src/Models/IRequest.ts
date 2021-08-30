@@ -1,5 +1,5 @@
 export interface IRequest {
     requestId: number,
-    requestedFromFloor: number,
+    requestedFloor: number,
     elevatorId?: string,
 }

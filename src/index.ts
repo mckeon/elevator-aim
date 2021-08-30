@@ -17,25 +17,30 @@ app.get(
     }
 );
 
-// Create a request for an elevator
+/**
+ * Create a request for an elevator without specifying an elevatorId (e.g. person on a floor requests elevator)
+ */
 app.post(
     "/requests/:floorId",
     async (req: Request, res: Response): Promise<Response> => {
         return res.status(201).send({
             requestId: `not implemented`,
-            requestedFromFloor: req.params.floorId,
+            requestedFloor: req.params.floorId,
             elevatorId: null,
         });
     }
 );
 
-// Get all requests assigned to an elevator
+/**
+ * From inside a particular elevator, create a request to stop on a certain floor. Should be triggered by button inside
+ * the elevator being pressed.
+ */
 app.post(
-    "/elevator/:floorId",
+    "/elevators/:elevatorId/:floorId",
     async (req: Request, res: Response): Promise<Response> => {
         return res.status(201).send({
             requestId: `not implemented`,
-            requestedFromFloor: req.params.floorId,
+            requestedFloor: req.params.floorId,
         });
     }
 );
@@ -50,21 +55,22 @@ try {
 }
 
 
-
-// Get all requests assigned to an elevator
+/**
+ * Get all requests assigned to an elevator by providing it's elevatorId. Returns an array of floorIds.
+ */
 app.get(
     "/elevators/:elevatorId/requests",
     async (req: Request, res: Response): Promise<Response> => {
         let requests = [
-            {"requestId": 1, "requestedFromFloor": 5, "elevatorId": "abc"},
-            {"requestId": 2, "requestedFromFloor": 2, "elevatorId": undefined},
-            {"requestId": 3, "requestedFromFloor": 4, "elevatorId": "def"},
-            {"requestId": 4, "requestedFromFloor": 6, "elevatorId": "abc"},
-            {"requestId": 5, "requestedFromFloor": 3, "elevatorId": undefined},
+            {"requestId": 1, "requestedFloor": 5, "elevatorId": "abc"},
+            {"requestId": 2, "requestedFloor": 2, "elevatorId": undefined},
+            {"requestId": 3, "requestedFloor": 4, "elevatorId": "def"},
+            {"requestId": 4, "requestedFloor": 6, "elevatorId": "abc"},
+            {"requestId": 5, "requestedFloor": 3, "elevatorId": undefined},
         ];
         let results: IRequest[] = requests.filter(request => request.elevatorId === req.params.elevatorId);
         console.log(results);
-        let floorsToVisit: Set<number> = new Set(results.map(a => a.requestedFromFloor));
+        let floorsToVisit: Set<number> = new Set(results.map(a => a.requestedFloor));
         console.log(floorsToVisit);
         return res.status(200).send([...floorsToVisit]);
     }
