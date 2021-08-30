@@ -1,10 +1,38 @@
-import express from "express";
-const app = express();
+import express, { Application, Request, Response } from "express";
+const app: Application = express();
+const port = 3000;
 
-app.get('/', (req, res) => {
-    res.send(`what's up?`);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const port = process.env.PORT || 3000;
+//
+app.get(
+    "/",
+    async (req: Request, res: Response): Promise<Response> => {
+        return res.status(200).send({
+            message: "Hello World!",
+        });
+    }
+);
 
-app.listen(port, () => console.log(`listening on port ${port}` ));
+
+app.post(
+    "/request/:floorId",
+    async (req: Request, res: Response): Promise<Response> => {
+        return res.status(200).send({
+            message: `Request received from floor: ${req.params.floorId}`,
+        });
+    }
+);
+
+
+
+
+
+try {
+    app.listen(port, (): void => {
+        console.log(`Connected successfully on port ${port}`);
+    });
+} catch (error) {
+    console.error(`Error occured: ${error}`);
+}

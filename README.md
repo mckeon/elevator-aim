@@ -20,4 +20,6 @@ The code should be developed in the same way that you develop in day-to-day prof
 
 # User stories 
 
-- As an elevat
+Type    path        verb    purpose
+---     ----        ----    -------
+create  /request/   post    create new request for an elevator when someone pushes button 
