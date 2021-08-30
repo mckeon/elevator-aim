@@ -49,7 +49,7 @@ You are tasked with designing an API for an elevator control system. Your API ne
 Another developer should be able to clone the git repo and:
 - [x ] invoke a single command that builds and runs the service. 
 - [x ] The developer should be able to make requests to localhost:8080 to test the services using a tool such as postman or curl. 
-- [ ] Be sure to include information about how the services should be called.
+- [x ] Be sure to include information about how the services should be called.
 
 
 
