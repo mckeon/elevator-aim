@@ -1,5 +1,8 @@
 # elevator-aim
 
+## Instructions for running
+`npm run start` 
+
 You are tasked with designing an API for an elevator control system. Your API needs to account for the following scenarios:
 
 -[x ] A person requests an elevator be sent to their current floor
