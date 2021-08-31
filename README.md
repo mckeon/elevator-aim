@@ -4,7 +4,7 @@ You are tasked with designing an API for an elevator control system. Your API ne
 
 -[x ] A person requests an elevator be sent to their current floor
     `curl -X POST \
-    http://localhost:3000/requests/:floorId \`
+    http://localhost:8080/requests/:floorId \`
 
     ```{
     "requestId": "not implemented",
@@ -14,7 +14,7 @@ You are tasked with designing an API for an elevator control system. Your API ne
 
 -[x ] A person requests that they be brought to a floor
     `curl -X POST \
-    http://localhost:3000/elevators/:elevatorId/:floorId \`
+    http://localhost:8080/elevators/:elevatorId/:floorId \`
 
     ```{
     "requestId": "not implemented",
@@ -25,7 +25,7 @@ You are tasked with designing an API for an elevator control system. Your API ne
 
 -[x ] An elevator car requests all floors that it’s current passengers are servicing (e.g. to light up the buttons that show which floors the car is going to)
     `curl -X GET \
-    http://localhost:3000/elevators/:elevatorID/requests \`
+    http://localhost:8080/elevators/:elevatorID/requests \`
 
      
 
@@ -37,7 +37,7 @@ You are tasked with designing an API for an elevator control system. Your API ne
 
 -[x ] An elevator car requests the next floor it needs to service
     `curl -X GET \
-    http://localhost:3000/elevators/:elevatorId/nextRequest \`
+    http://localhost:8080/elevators/:elevatorId/nextRequest \`
 
     ``` {
     "nextFloor": 5
